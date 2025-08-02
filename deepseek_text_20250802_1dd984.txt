@@ -1,0 +1,22 @@
+school-management/
+├── index.html          # Main dashboard
+├── pages/
+│   ├── students.html   # Student management
+│   ├── teachers.html   # Teacher management
+│   ├── classes.html    # Class management
+│   ├── attendance.html # Attendance tracking
+│   └── subjects.html   # Subjects management
+├── css/
+│   ├── styles.css      # Custom CSS
+│   └── tailwind.css    # Tailwind CSS (if using custom build)
+├── js/
+│   ├── script.js       # Main JavaScript
+│   ├── students.js     # Student-specific JS
+│   ├── teachers.js     # Teacher-specific JS
+│   └── auth.js         # Authentication JS
+├── components/
+│   ├── sidebar.html    # Reusable sidebar
+│   └── header.html     # Reusable header
+└── assets/
+    ├── images/         # All images
+    └── icons/          # Icon files
