@@ -3,101 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Management System</title>
-    <!-- Tailwind CSS -->
+    <title>School Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="min-h-screen flex flex-col md:flex-row">
-        <!-- Sidebar -->
-        <aside class="bg-blue-800 text-white w-full md:w-64">
-            <div class="p-4">
-                <h1 class="text-2xl font-bold text-center md:text-left">
-                    <i class="fas fa-graduation-cap mr-2"></i>EduManage
-                </h1>
-            </div>
-            <nav class="mt-6">
-                <div class="px-4 py-2 hover:bg-blue-700 cursor-pointer active-nav-item">
-                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                </div>
-                <div class="px-4 py-2 hover:bg-blue-700 cursor-pointer">
-                    <i class="fas fa-users mr-2"></i>Students
-                </div>
-                <div class="px-4 py-2 hover:bg-blue-700 cursor-pointer">
-                    <i class="fas fa-chalkboard-teacher mr-2"></i>Teachers
-                </div>
-                <div class="px-4 py-2 hover:bg-blue-700 cursor-pointer">
-                    <i class="fas fa-door-open mr-2"></i>Classes
-                </div>
-                <div class="px-4 py-2 hover:bg-blue-700 cursor-pointer">
-                    <i class="fas fa-clipboard-check mr-2"></i>Attendance
-                </div>
-                <div class="px-4 py-2 hover:bg-blue-700 cursor-pointer">
-                    <i class="fas fa-book mr-2"></i>Subjects
-                </div>
-            </nav>
-        </aside>
+        <!-- Sidebar loaded via JS -->
+        <div id="sidebar"></div>
 
-        <!-- Main Content -->
         <main class="flex-1 p-6">
-            <header class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-semibold">Dashboard</h2>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <i class="fas fa-bell text-gray-600 text-xl"></i>
-                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
-                    </div>
-                    <div class="flex items-center">
-                        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full h-8 w-8">
-                        <span class="ml-2">Admin</span>
-                    </div>
-                </div>
-            </header>
+            <!-- Header loaded via JS -->
+            <div id="header"></div>
 
-            <!-- Stats Cards -->
+            <!-- Dashboard Content -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex justify-between">
-                        <div>
-                            <p class="text-gray-500">Total Students</p>
-                            <h3 class="text-2xl font-bold">1,245</h3>
-                        </div>
-                        <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
-                            <i class="fas fa-users text-xl"></i>
-                        </div>
-                    </div>
-                    <p class="text-green-500 mt-2"><i class="fas fa-arrow-up"></i> 12% from last month</p>
-                </div>
-                
-                <!-- Repeat similar cards for Teachers, Classes, etc. -->
+                <!-- Stats cards here -->
             </div>
 
-            <!-- Recent Activity -->
-            <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <!-- Recent Activity Section -->
+            <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-xl font-semibold mb-4">Recent Activity</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr class="border-b">
-                                <th class="text-left py-3 px-4">Date</th>
-                                <th class="text-left py-3 px-4">Activity</th>
-                                <th class="text-left py-3 px-4">User</th>
-                                <th class="text-left py-3 px-4">Details</th>
-                            </tr>
-                        </thead>
-                        <tbody id="activity-table">
-                            <!-- JavaScript will populate this -->
-                        </tbody>
-                    </table>
-                </div>
+                <div id="activity-container"></div>
             </div>
         </main>
     </div>
+
     <script src="js/main.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        // Load components
+        loadComponent('sidebar', '../components/sidebar.html');
+        loadComponent('header', '../components/header.html');
+        
+        function loadComponent(elementId, path) {
+            fetch(path)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById(elementId).innerHTML = html;
+                    if(elementId === 'sidebar') setActiveNavItem('dashboard');
+                });
+        }
+        
+        function setActiveNavItem(page) {
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(item => {
+                item.classList.remove('active-nav-item');
+                if(item.dataset.page === page) {
+                    item.classList.add('active-nav-item');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
