@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teachers | EduManage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex flex-col md:flex-row">
+      <div id="sidebar"></div>
+
+      <main class="flex-1 p-6">
+        <div id="header"></div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-semibold">Teacher Records</h3>
+            <button
+              id="add-teacher-btn"
+              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              <i class="fas fa-plus mr-2"></i>Add Teacher
+            </button>
+          </div>
+
+          <div id="teacher-table-container"></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Teacher Modal (hidden by default) -->
+    <div
+      id="teacher-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+    >
+      <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold" id="modal-title">Add Teacher</h3>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="teacher-form">
+          <div class="mb-4">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" required />
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" required />
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Subject</label>
+            <select class="form-input" required>
+              <option value="">Select Subject</option>
+              <option value="math">Mathematics</option>
+              <option value="science">Science</option>
+              <option value="english">English</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          >
+            Save Teacher
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/teachers.js"></script>
+    <script>
+      // Load components
+      fetch("../components/sidebar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("sidebar").innerHTML = data;
+          // Set active nav item
+          const items = document.querySelectorAll(".nav-item");
+          items.forEach((item) => {
+            item.classList.remove("active-nav-item");
+            if (item.dataset.page === "teachers") {
+              item.classList.add("active-nav-item");
+            }
+          });
+        });
+
+      fetch("../components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+          document.getElementById("page-title").textContent =
+            "Teacher Management";
+        });
+    </script>
+  </body>
+</html>
