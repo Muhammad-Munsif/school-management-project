@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management | EduManage</title>
+    <title>Students | EduManage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="min-h-screen flex flex-col md:flex-row">
-        <!-- Include Sidebar -->
         <div id="sidebar"></div>
 
         <main class="flex-1 p-6">
-            <!-- Include Header -->
             <div id="header"></div>
 
             <!-- Student-specific content -->
@@ -26,14 +24,34 @@
                     </button>
                 </div>
                 
-                <!-- Student table will be loaded here -->
                 <div id="student-table-container"></div>
             </div>
         </main>
     </div>
 
-    <!-- JavaScript -->
     <script src="../js/students.js"></script>
-
+    <script>
+        // Load components
+        fetch('../components/sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar').innerHTML = data;
+                // Set active nav item
+                const items = document.querySelectorAll('.nav-item');
+                items.forEach(item => {
+                    item.classList.remove('active-nav-item');
+                    if(item.dataset.page === 'students') {
+                        item.classList.add('active-nav-item');
+                    }
+                });
+            });
+            
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                document.getElementById('page-title').textContent = 'Student Management';
+            });
+    </script>
 </body>
 </html>
