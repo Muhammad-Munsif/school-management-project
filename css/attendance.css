@@ -1,0 +1,23 @@
+.attendance-status {
+    @apply inline-block w-4 h-4 rounded-full mr-2;
+}
+
+.status-present {
+    @apply bg-green-500;
+}
+
+.status-absent {
+    @apply bg-red-500;
+}
+
+.status-late {
+    @apply bg-yellow-500;
+}
+
+.attendance-card {
+    @apply transition-all duration-200;
+}
+
+.attendance-card:hover {
+    @apply transform scale-[1.02] shadow-md;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance | EduManage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/attendance.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <div id="sidebar"></div>
+
+        <main class="flex-1 p-6">
+            <div id="header"></div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <h3 class="text-xl font-semibold mb-4 md:mb-0">Attendance Tracking</h3>
+                    <div class="flex space-x-4">
+                        <select id="class-select" class="form-input">
+                            <option value="">Select Class</option>
+                            <option value="10A">Grade 10 - A</option>
+                            <option value="11B">Grade 11 - B</option>
+                        </select>
+                        <input type="date" id="attendance-date" class="form-input">
+                    </div>
+                </div>
+                
+                <div id="attendance-container">
+                    <p class="text-gray-500 text-center py-8">Select a class and date to view attendance</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/attendance.js"></script>
+    <script>
+        // Load components
+        fetch('../components/sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar').innerHTML = data;
+                // Set active nav item
+                const items = document.querySelectorAll('.nav-item');
+                items.forEach(item => {
+                    item.classList.remove('active-nav-item');
+                    if(item.dataset.page === 'attendance') {
+                        item.classList.add('active-nav-item');
+                    }
+                });
+            });
+            
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                document.getElementById('page-title').textContent = 'Attendance Tracking';
+            });
+    </script>
+</body>
+</html>
