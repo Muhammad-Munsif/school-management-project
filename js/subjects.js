@@ -1,13 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const students = [
-        { id: 1, name: 'John Doe', grade: '10', section: 'A', contact: 'john@example.com' },
-        { id: 2, name: 'Jane Smith', grade: '11', section: 'B', contact: 'jane@example.com' },
-        { id: 3, name: 'Michael Johnson', grade: '12', section: 'C', contact: 'michael@example.com' }
-    ];
+document.addEventListener("DOMContentLoaded", function () {
+  const students = [
+    {
+      id: 1,
+      name: "John Doe",
+      grade: "10",
+      section: "A",
+      contact: "john@example.com",
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      grade: "11",
+      section: "B",
+      contact: "jane@example.com",
+    },
+    {
+      id: 3,
+      name: "Michael Johnson",
+      grade: "12",
+      section: "C",
+      contact: "michael@example.com",
+    },
+  ];
 
-    const container = document.getElementById('student-table-container');
-    
-    container.innerHTML = `
+  const container = document.getElementById("student-table-container");
+
+  container.innerHTML = `
         <div class="overflow-x-auto">
             <table class="min-w-full">
                 <thead>
@@ -21,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </tr>
                 </thead>
                 <tbody>
-                    ${students.map(student => `
+                    ${students
+                      .map(
+                        (student) => `
                         <tr class="border-b hover:bg-gray-50">
                             <td class="py-3 px-4">${student.id}</td>
                             <td class="py-3 px-4">${student.name}</td>
@@ -37,7 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </button>
                             </td>
                         </tr>
-                    `).join('')}
+                    `
+                      )
+                      .join("")}
                 </tbody>
             </table>
         </div>
