@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Students | EduManage</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body class="bg-gray-100 font-sans">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body class="bg-gray-100 font-sans">
     <div class="min-h-screen flex flex-col md:flex-row">
-        <div id="sidebar"></div>
+      <div id="sidebar"></div>
 
-        <main class="flex-1 p-6">
-            <div id="header"></div>
+      <main class="flex-1 p-6">
+        <div id="header"></div>
 
-            <!-- Student-specific content -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-semibold">Student Records</h3>
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                        <i class="fas fa-plus mr-2"></i>Add Student
-                    </button>
-                </div>
-                
-                <div id="student-table-container"></div>
-            </div>
-        </main>
+        <!-- Student-specific content -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-semibold">Student Records</h3>
+            <button
+              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              <i class="fas fa-plus mr-2"></i>Add Student
+            </button>
+          </div>
+
+          <div id="student-table-container"></div>
+        </div>
+      </main>
     </div>
 
     <script src="../js/students.js"></script>
     <script>
-        // Load components
-        fetch('../components/sidebar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('sidebar').innerHTML = data;
-                // Set active nav item
-                const items = document.querySelectorAll('.nav-item');
-                items.forEach(item => {
-                    item.classList.remove('active-nav-item');
-                    if(item.dataset.page === 'students') {
-                        item.classList.add('active-nav-item');
-                    }
-                });
-            });
-            
-        fetch('../components/header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
-                document.getElementById('page-title').textContent = 'Student Management';
-            });
+      // Load components
+      fetch("../components/sidebar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("sidebar").innerHTML = data;
+          // Set active nav item
+          const items = document.querySelectorAll(".nav-item");
+          items.forEach((item) => {
+            item.classList.remove("active-nav-item");
+            if (item.dataset.page === "students") {
+              item.classList.add("active-nav-item");
+            }
+          });
+        });
+
+      fetch("../components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+          document.getElementById("page-title").textContent =
+            "Student Management";
+        });
     </script>
-</body>
+  </body>
 </html>
