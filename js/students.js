@@ -29,7 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
       section: "B",
       contact: "jane@example.com",
     },
-    // ... more students
+    {
+      id: 3,
+      name: "Steve Smith",
+      grade: "11",
+      section: "B",
+      contact: "steve@example.com",
+    },
+    {
+      id: 4,
+      name: "Derren Smith",
+      grade: "11",
+      section: "B",
+      contact: "derren@example.com",
+    },
+    
   ];
 
   // Render student table
