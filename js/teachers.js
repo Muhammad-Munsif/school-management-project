@@ -22,6 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
       subject: "English",
       joinDate: "2022-01-10",
     },
+    {
+      id: 4,
+      name: "Ms. Ellin Brown",
+      email: "ellin@school.edu",
+      subject: "Computer",
+      joinDate: "2021-10-10",
+    },
   ];
 
   const container = document.getElementById("teacher-table-container");
