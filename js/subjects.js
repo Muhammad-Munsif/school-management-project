@@ -21,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
       section: "C",
       contact: "michael@example.com",
     },
+    {
+      id: 4,
+      name: "Jone smith",
+      grade: "12",
+      section: "C",
+      contact: "michael@example.com",
+    },
   ];
 
   const container = document.getElementById("student-table-container");
