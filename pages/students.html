@@ -1,63 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Students | EduManage</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body class="bg-gray-100 font-sans">
-    <div class="min-h-screen flex flex-col md:flex-row">
-      <div id="sidebar"></div>
 
-      <main class="flex-1 p-6">
-        <div id="header"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Students | EduManage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .active-nav-item {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid white;
+    }
 
-        <!-- Student-specific content -->
-        <div class="bg-white rounded-lg shadow p-6">
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-semibold">Student Records</h3>
-            <button
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              <i class="fas fa-plus mr-2"></i>Add Student
-            </button>
-          </div>
+    /* Responsive tables */
+    @media (max-width: 768px) {
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
 
-          <div id="student-table-container"></div>
+    /* Animation for cards */
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form styles */
+    .form-input {
+      @apply w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500;
+    }
+
+    .form-label {
+      @apply block text-gray-700 mb-2;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+  <div class="min-h-screen flex flex-col md:flex-row">
+    <div id="sidebar"></div>
+
+    <main class="flex-1 p-6">
+      <div id="header"></div>
+
+      <!-- Student-specific content -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-semibold">Student Records</h3>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            <i class="fas fa-plus mr-2"></i>Add Student
+          </button>
         </div>
-      </main>
-    </div>
 
-    <script src="../js/students.js"></script>
-    <script>
-      // Load components
-      fetch("../components/sidebar.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("sidebar").innerHTML = data;
-          // Set active nav item
-          const items = document.querySelectorAll(".nav-item");
-          items.forEach((item) => {
-            item.classList.remove("active-nav-item");
-            if (item.dataset.page === "students") {
-              item.classList.add("active-nav-item");
-            }
-          });
-        });
+        <div id="student-table-container"></div>
+      </div>
+    </main>
+  </div>
 
-      fetch("../components/header.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("header").innerHTML = data;
-          document.getElementById("page-title").textContent =
-            "Student Management";
+  <script src="../js/students.js">
+    // Set page title
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("page-title").textContent = "Student Management";
+    });
+
+    // Load components
+    fetch("../components/sidebar.html")
+      .then((response) => response.text())
+      .then((data) => (document.getElementById("sidebar").innerHTML = data));
+
+    fetch("../components/header.html")
+      .then((response) => response.text())
+      .then((data) => (document.getElementById("header").innerHTML = data));
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample student data
+      const students = [
+        {
+          id: 1,
+          name: "John Doe",
+          grade: "10",
+          section: "A",
+          contact: "john@example.com",
+        },
+        {
+          id: 2,
+          name: "Jane Smith",
+          grade: "11",
+          section: "B",
+          contact: "jane@example.com",
+        },
+        {
+          id: 3,
+          name: "Steve Smith",
+          grade: "11",
+          section: "B",
+          contact: "steve@example.com",
+        },
+        {
+          id: 4,
+          name: "Derren Smith",
+          grade: "11",
+          section: "B",
+          contact: "derren@example.com",
+        },
+
+      ];
+
+      // Render student table
+      const container = document.getElementById("student-table-container");
+      container.innerHTML = `
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                <thead>
+                    <tr class="border-b">
+                        <th class="text-left py-3 px-4">ID</th>
+                        <th class="text-left py-3 px-4">Name</th>
+                        <th class="text-left py-3 px-4">Grade</th>
+                        <th class="text-left py-3 px-4">Section</th>
+                        <th class="text-left py-3 px-4">Contact</th>
+                        <th class="text-left py-3 px-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${students
+          .map(
+            (student) => `
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4">${student.id}</td>
+                            <td class="py-3 px-4">${student.name}</td>
+                            <td class="py-3 px-4">${student.grade}</td>
+                            <td class="py-3 px-4">${student.section}</td>
+                            <td class="py-3 px-4">${student.contact}</td>
+                            <td class="py-3 px-4">
+                                <button class="text-blue-600 hover:text-blue-800 mr-2">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-red-600 hover:text-red-800">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `
+          )
+          .join("")}
+                </tbody>
+            </table>
+        </div>
+    `;
+    });
+
+  </script>
+  <script>
+    // Load components
+    fetch("../components/sidebar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("sidebar").innerHTML = data;
+        // Set active nav item
+        const items = document.querySelectorAll(".nav-item");
+        items.forEach((item) => {
+          item.classList.remove("active-nav-item");
+          if (item.dataset.page === "students") {
+            item.classList.add("active-nav-item");
+          }
         });
-    </script>
-  </body>
+      });
+
+    fetch("../components/header.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+        document.getElementById("page-title").textContent =
+          "Student Management";
+      });
+  </script>
+</body>
+
 </html>
