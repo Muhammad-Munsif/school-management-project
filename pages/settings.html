@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | EduManage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+ 
+</head>
+
+<body class="bg-gray-100">
+  <div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="p-6 border-b border-gray-200">
+        <h2 class="text-xl font-bold text-gray-800">EduManage</h2>
+      </div>
+      <div class="p-4">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="students.html" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span>Students</span>
+        </a>
+        <a href="teachers.html" class="nav-item">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <span>Teachers</span>
+        </a>
+        <a href="classes.html" class="nav-item">
+          <i class="fas fa-door-open"></i>
+          <span>Classes</span>
+        </a>
+        <a href="subjects.html" class="nav-item">
+          <i class="fas fa-book"></i>
+          <span>Subjects</span>
+        </a>
+        <a href="attendance.html" class="nav-item">
+          <i class="fas fa-clipboard-check"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="settings.html" class="nav-item active-nav-item">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content flex-1 flex flex-col">
+      <!-- Header -->
+      <div class="header">
+        <div class="flex items-center">
+          <button class="mobile-menu-btn mr-4">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="header-title" id="page-title">Settings</h1>
+        </div>
+        <div class="user-profile">
+          <span class="user-name">John Admin</span>
+          <div class="user-avatar">JA</div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 p-4 md:p-6">
+        <div class="card p-6 mb-6">
+          <div class="settings-section">
+            <h2 class="settings-section-title">
+              <i class="fas fa-user-cog text-blue-500"></i>
+              Account Settings
+            </h2>
+            <div class="settings-grid">
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-primary">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <span>Profile Information</span>
+                </div>
+                <div class="space-y-4">
+                  <div>
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" value="John Admin">
+                  </div>
+                  <div>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" value="john.admin@edumanage.com">
+                  </div>
+                  <div>
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" value="+1 (555) 123-4567">
+                  </div>
+                  <button class="btn btn-primary w-full">
+                    <i class="fas fa-save mr-2"></i>Update Profile
+                  </button>
+                </div>
+              </div>
+
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-secondary">
+                    <i class="fas fa-lock"></i>
+                  </div>
+                  <span>Security</span>
+                </div>
+                <div class="space-y-4">
+                  <div>
+                    <label class="form-label">Current Password</label>
+                    <input type="password" class="form-input">
+                  </div>
+                  <div>
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-input">
+                  </div>
+                  <div>
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-input">
+                  </div>
+                  <button class="btn btn-primary w-full">
+                    <i class="fas fa-key mr-2"></i>Change Password
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="settings-section-title">
+              <i class="fas fa-palette text-purple-500"></i>
+              Appearance & Preferences
+            </h2>
+            <div class="settings-grid">
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-purple">
+                    <i class="fas fa-moon"></i>
+                  </div>
+                  <span>Theme Settings</span>
+                </div>
+                <div class="space-y-4">
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">Dark Mode</div>
+                      <div class="settings-option-description">Switch between light and dark themes</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">Compact Mode</div>
+                      <div class="settings-option-description">Reduce padding for more content</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div>
+                    <div class="settings-option-title mb-2">Color Theme</div>
+                    <div class="color-picker">
+                      <div class="color-option active" style="background-color: #3b82f6;" data-color="blue"></div>
+                      <div class="color-option" style="background-color: #10b981;" data-color="green"></div>
+                      <div class="color-option" style="background-color: #f59e0b;" data-color="orange"></div>
+                      <div class="color-option" style="background-color: #8b5cf6;" data-color="purple"></div>
+                      <div class="color-option" style="background-color: #ec4899;" data-color="pink"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-info">
+                    <i class="fas fa-bell"></i>
+                  </div>
+                  <span>Notifications</span>
+                </div>
+                <div class="space-y-4">
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">Email Notifications</div>
+                      <div class="settings-option-description">Receive updates via email</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">Push Notifications</div>
+                      <div class="settings-option-description">Get alerts in your browser</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">SMS Alerts</div>
+                      <div class="settings-option-description">Important updates via text</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="settings-section-title">
+              <i class="fas fa-database text-warning-500"></i>
+              Data Management
+            </h2>
+            <div class="settings-grid">
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-warning">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <span>Backup & Restore</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="backup-option">
+                    <div class="backup-icon icon-primary">
+                      <i class="fas fa-download"></i>
+                    </div>
+                    <div class="backup-info">
+                      <div class="backup-title">Download Data Backup</div>
+                      <div class="backup-description">Export all your data as a JSON file</div>
+                    </div>
+                  </div>
+                  <div class="backup-option">
+                    <div class="backup-icon icon-secondary">
+                      <i class="fas fa-upload"></i>
+                    </div>
+                    <div class="backup-info">
+                      <div class="backup-title">Restore from Backup</div>
+                      <div class="backup-description">Import data from a previous backup</div>
+                    </div>
+                  </div>
+                  <div class="backup-option">
+                    <div class="backup-icon icon-info">
+                      <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="backup-info">
+                      <div class="backup-title">Cloud Sync</div>
+                      <div class="backup-description">Automatically backup to cloud storage</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                  </div>
+                  <span>Danger Zone</span>
+                </div>
+                <div class="danger-zone">
+                  <div class="danger-zone-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    Proceed with Caution
+                  </div>
+                  <div class="danger-zone-description">
+                    These actions are irreversible. Please be certain before proceeding.
+                  </div>
+                  <div class="space-y-3">
+                    <button class="btn btn-secondary w-full">
+                      <i class="fas fa-eraser mr-2"></i>Clear Cache
+                    </button>
+                    <button class="btn btn-danger w-full">
+                      <i class="fas fa-trash-alt mr-2"></i>Delete All Data
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="settings-section-title">
+              <i class="fas fa-sliders-h text-green-500"></i>
+              System Preferences
+            </h2>
+            <div class="settings-grid">
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-secondary">
+                    <i class="fas fa-language"></i>
+                  </div>
+                  <span>Language & Region</span>
+                </div>
+                <div class="space-y-4">
+                  <div>
+                    <label class="form-label">Language</label>
+                    <select class="form-input">
+                      <option>English</option>
+                      <option>Spanish</option>
+                      <option>French</option>
+                      <option>German</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Time Zone</label>
+                    <select class="form-input">
+                      <option>UTC-5 (Eastern Time)</option>
+                      <option>UTC-6 (Central Time)</option>
+                      <option>UTC-7 (Mountain Time)</option>
+                      <option>UTC-8 (Pacific Time)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Date Format</label>
+                    <select class="form-input">
+                      <option>MM/DD/YYYY</option>
+                      <option>DD/MM/YYYY</option>
+                      <option>YYYY-MM-DD</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-card card">
+                <div class="settings-card-title">
+                  <div class="settings-card-icon icon-info">
+                    <i class="fas fa-tachometer-alt"></i>
+                  </div>
+                  <span>Performance</span>
+                </div>
+                <div class="space-y-4">
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">Auto-save</div>
+                      <div class="settings-option-description">Automatically save changes</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="settings-option">
+                    <div class="settings-option-label">
+                      <div class="settings-option-title">Offline Mode</div>
+                      <div class="settings-option-description">Work without internet connection</div>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div>
+                    <label class="form-label">Data Refresh Rate</label>
+                    <select class="form-input">
+                      <option>Real-time</option>
+                      <option>Every 5 minutes</option>
+                      <option>Every 15 minutes</option>
+                      <option>Every hour</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const sidebar = document.querySelector('.sidebar');
+      const colorOptions = document.querySelectorAll('.color-option');
+      const toggleSwitches = document.querySelectorAll('.toggle-switch input');
+
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener('click', function () {
+        sidebar.classList.toggle('hidden');
+      });
+
+      // Color theme selection
+      colorOptions.forEach(option => {
+        option.addEventListener('click', function () {
+          colorOptions.forEach(opt => opt.classList.remove('active'));
+          this.classList.add('active');
+
+          const color = this.getAttribute('data-color');
+          // In a real app, this would change the theme
+          alert(`Theme changed to ${color} mode`);
+        });
+      });
+
+      // Toggle switch feedback
+      toggleSwitches.forEach(toggle => {
+        toggle.addEventListener('change', function () {
+          const settingName = this.closest('.settings-option').querySelector('.settings-option-title').textContent;
+          const action = this.checked ? 'enabled' : 'disabled';
+          // In a real app, this would save the setting
+          console.log(`${settingName} ${action}`);
+        });
+      });
+
+      // Handle form submissions
+      document.querySelectorAll('button[type="submit"]').forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+          // In a real app, this would submit the form
+          alert('Settings saved successfully!');
+        });
+      });
+
+      // Danger zone actions
+      document.querySelector('.btn-danger').addEventListener('click', function () {
+        if (confirm('Are you absolutely sure? This will delete ALL data and cannot be undone.')) {
+          alert('All data has been deleted. The page will now refresh.');
+          // In a real app, this would delete data and refresh
+          setTimeout(() => location.reload(), 2000);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
