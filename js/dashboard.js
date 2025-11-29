@@ -1,4 +1,4 @@
-<script>
+
         document.addEventListener("DOMContentLoaded", function () {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const sidebar = document.querySelector('.sidebar');
@@ -41,4 +41,4 @@
                 });
             }, 100);
         });
-    </script>
+    
