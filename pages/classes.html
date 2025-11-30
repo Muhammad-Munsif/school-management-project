@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classes | EduManage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --sidebar-width: 260px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+      background-color: #f1f5f9;
+      color: #334155;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background-color: #cbd5e1;
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .active-nav-item {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      color: #64748b;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-item:hover {
+      background-color: #f1f5f9;
+      color: var(--dark);
+    }
+
+    .nav-item i {
+      margin-right: 0.75rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      background: white;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 40;
+    }
+
+    .header {
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: var(--sidebar-width);
+      z-index: 30;
+      height: 70px;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+      z-index: 60;
+    }
+
+    .sidebar-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+      display: none;
+      z-index: 60;
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 35;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .class-card {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .class-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .class-header {
+      padding: 1.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .class-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(30px, -30px);
+    }
+
+    .class-header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(-20px, 20px);
+    }
+
+    .class-grade-10 {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .class-grade-11 {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .class-grade-9 {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .class-grade-12 {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .class-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    .class-subject {
+      opacity: 0.9;
+      z-index: 1;
+      position: relative;
+    }
+
+    .class-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .class-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .class-detail i {
+      width: 16px;
+      margin-right: 0.5rem;
+      color: #64748b;
+    }
+
+    .class-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    .class-btn {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    .class-btn-edit {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+
+    .class-btn-edit:hover {
+      background-color: #bfdbfe;
+    }
+
+    .class-btn-delete {
+      background-color: #fee2e2;
+      color: #dc2626;
+    }
+
+    .class-btn-delete:hover {
+      background-color: #fecaca;
+    }
+
+    .class-btn-view {
+      background-color: #f0fdf4;
+      color: #166534;
+    }
+
+    .class-btn-view:hover {
+      background-color: #dcfce7;
+    }
+
+    .stats-card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stats-total {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .stats-students {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .stats-teachers {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .stats-avg {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #475569;
+    }
+
+    .empty-state-text {
+      color: #64748b;
+      max-width: 400px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .search-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+
+    .search-input {
+      padding-left: 2.5rem;
+    }
+
+    .filter-container {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      min-width: 150px;
+    }
+
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .main-content {
+      margin-left: var(--sidebar-width);
+      margin-top: 70px;
+      width: calc(100% - var(--sidebar-width));
+      min-height: calc(100vh - 70px);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .header {
+        left: 0;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .sidebar-close-btn {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .header-title {
+        font-size: 1.25rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .class-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-container {
+        flex-direction: column;
+      }
+
+      .filter-select {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-profile .user-name {
+        display: none;
+      }
+
+      .class-actions {
+        flex-direction: column;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <div class="min-h-screen">
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="sidebar-close-btn">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="p-6 border-b border-gray-200">
+        <h2 class="text-xl font-bold text-gray-800">EduManage</h2>
+      </div>
+      <div class="p-4">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="students.html" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span>Students</span>
+        </a>
+        <a href="teachers.html" class="nav-item">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <span>Teachers</span>
+        </a>
+        <a href="classes.html" class="nav-item active-nav-item">
+          <i class="fas fa-door-open"></i>
+          <span>Classes</span>
+        </a>
+        <a href="subjects.html" class="nav-item">
+          <i class="fas fa-book"></i>
+          <span>Subjects</span>
+        </a>
+        <a href="attendance.html" class="nav-item">
+          <i class="fas fa-clipboard-check"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content flex-1 flex flex-col">
+      <!-- Header -->
+      <div class="header">
+        <div class="flex items-center">
+          <button class="mobile-menu-btn mr-4">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="header-title" id="page-title">Class Management</h1>
+        </div>
+        <div class="user-profile">
+          <span class="user-name">John Admin</span>
+          <div class="user-avatar">JA</div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 p-4 md:p-6">
+        <div class="card p-6 mb-6">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <h3 class="text-xl font-semibold mb-4 md:mb-0">
+              Class Management
+            </h3>
+            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto filters">
+              <button id="add-class-btn" class="btn btn-primary">
+                <i class="fas fa-plus mr-2"></i>Add Class
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Overview -->
+          <div class="stats-grid mb-6">
+            <div class="stats-card stats-total">
+              <span class="text-sm opacity-90">Total Classes</span>
+              <span class="text-2xl font-bold mt-2" id="total-classes">6</span>
+            </div>
+            <div class="stats-card stats-students">
+              <span class="text-sm opacity-90">Total Students</span>
+              <span class="text-2xl font-bold mt-2" id="total-students">185</span>
+            </div>
+            <div class="stats-card stats-teachers">
+              <span class="text-sm opacity-90">Teachers</span>
+              <span class="text-2xl font-bold mt-2" id="total-teachers">8</span>
+            </div>
+            <div class="stats-card stats-avg">
+              <span class="text-sm opacity-90">Avg. Class Size</span>
+              <span class="text-2xl font-bold mt-2" id="avg-class-size">31</span>
+            </div>
+          </div>
+
+          <!-- Search and Filters -->
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-classes" placeholder="Search classes..." class="form-input search-input">
+          </div>
+
+          <div class="filter-container">
+            <select id="grade-filter" class="form-input filter-select">
+              <option value="">All Grades</option>
+              <option value="9">Grade 9</option>
+              <option value="10">Grade 10</option>
+              <option value="11">Grade 11</option>
+              <option value="12">Grade 12</option>
+            </select>
+            <select id="teacher-filter" class="form-input filter-select">
+              <option value="">All Teachers</option>
+              <option value="Dr. Sarah Johnson">Dr. Sarah Johnson</option>
+              <option value="Mr. David Wilson">Mr. David Wilson</option>
+              <option value="Ms. Emily Brown">Ms. Emily Brown</option>
+              <option value="Ms. Ellin Brown">Ms. Ellin Brown</option>
+            </select>
+          </div>
+
+          <!-- Class Grid -->
+          <div id="class-container" class="class-grid">
+            <!-- Content will be loaded here -->
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Class Modal -->
+  <div id="class-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="p-6 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+          <h3 class="text-xl font-semibold" id="modal-title">Add Class</h3>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <form id="class-form" class="p-6">
+        <div class="mb-4">
+          <label class="form-label">Class Name</label>
+          <input type="text" name="name" class="form-input" required />
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Grade</label>
+          <select name="grade" class="form-input" required>
+            <option value="">Select Grade</option>
+            <option value="9">Grade 9</option>
+            <option value="10">Grade 10</option>
+            <option value="11">Grade 11</option>
+            <option value="12">Grade 12</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Section</label>
+          <select name="section" class="form-input" required>
+            <option value="">Select Section</option>
+            <option value="A">Section A</option>
+            <option value="B">Section B</option>
+            <option value="C">Section C</option>
+            <option value="D">Section D</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Teacher</label>
+          <select name="teacher" class="form-input" required>
+            <option value="">Select Teacher</option>
+            <option value="Dr. Sarah Johnson">Dr. Sarah Johnson</option>
+            <option value="Mr. David Wilson">Mr. David Wilson</option>
+            <option value="Ms. Emily Brown">Ms. Emily Brown</option>
+            <option value="Ms. Ellin Brown">Ms. Ellin Brown</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Subject</label>
+          <select name="subject" class="form-input" required>
+            <option value="">Select Subject</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+            <option value="English">English</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="History">History</option>
+            <option value="Geography">Geography</option>
+          </select>
+        </div>
+        <div class="flex justify-end space-x-3 mt-6">
+          <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Class</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample class data
+      let classes = [
+        {
+          id: 1,
+          name: "Grade 10 - A",
+          grade: "10",
+          section: "A",
+          teacher: "Dr. Sarah Johnson",
+          students: 32,
+          subject: "Science",
+          room: "Room 101",
+        },
+        {
+          id: 2,
+          name: "Grade 11 - B",
+          grade: "11",
+          section: "B",
+          teacher: "Mr. David Wilson",
+          students: 28,
+          subject: "Mathematics",
+          room: "Room 205",
+        },
+        {
+          id: 3,
+          name: "Grade 9 - C",
+          grade: "9",
+          section: "C",
+          teacher: "Ms. Emily Brown",
+          students: 30,
+          subject: "English",
+          room: "Room 104",
+        },
+        {
+          id: 4,
+          name: "Grade 12 - A",
+          grade: "12",
+          section: "A",
+          teacher: "Mr. Robert Smith",
+          students: 35,
+          subject: "Physics",
+          room: "Lab 1",
+        },
+        {
+          id: 5,
+          name: "Grade 10 - B",
+          grade: "10",
+          section: "B",
+          teacher: "Ms. Ellin Brown",
+          students: 29,
+          subject: "Computer Science",
+          room: "Computer Lab",
+        },
+        {
+          id: 6,
+          name: "Grade 11 - A",
+          grade: "11",
+          section: "A",
+          teacher: "Ms. Lisa Anderson",
+          students: 31,
+          subject: "Chemistry",
+          room: "Lab 2",
+        },
+      ];
+
+      const container = document.getElementById("class-container");
+      const modal = document.getElementById("class-modal");
+      const addClassBtn = document.getElementById("add-class-btn");
+      const closeModalBtn = document.getElementById("close-modal");
+      const cancelBtn = document.getElementById("cancel-btn");
+      const classForm = document.getElementById("class-form");
+      const searchInput = document.getElementById("search-classes");
+      const gradeFilter = document.getElementById("grade-filter");
+      const teacherFilter = document.getElementById("teacher-filter");
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const sidebarCloseBtn = document.querySelector(".sidebar-close-btn");
+      const sidebar = document.querySelector(".sidebar");
+      const sidebarOverlay = document.querySelector(".sidebar-overlay");
+
+      let editingClassId = null;
+
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener("click", function () {
+        sidebar.classList.add("active");
+        sidebarOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      // Mobile sidebar close button
+      sidebarCloseBtn.addEventListener("click", function () {
+        sidebar.classList.remove("active");
+        sidebarOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      // Close sidebar when clicking on overlay
+      sidebarOverlay.addEventListener("click", function () {
+        sidebar.classList.remove("active");
+        sidebarOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      // Get class header color
+      function getClassColor(grade) {
+        const colors = {
+          9: "class-grade-9",
+          10: "class-grade-10",
+          11: "class-grade-11",
+          12: "class-grade-12",
+        };
+        return colors[grade] || "class-grade-10";
+      }
+
+      // Render class cards
+      function renderClassCards(classList = classes) {
+        if (classList.length === 0) {
+          container.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <i class="fas fa-door-open"></i>
+                </div>
+                <h3 class="empty-state-title">No Classes Found</h3>
+                <p class="empty-state-text">
+                  No class records match your search criteria. Try adjusting your filters or add a new class.
+                </p>
+              </div>
+            `;
+          return;
+        }
+
+        // Update stats
+        updateStats(classList);
+
+        container.innerHTML = classList
+          .map(
+            (cls) => `
+              <div class="class-card card">
+                <div class="class-header ${getClassColor(cls.grade)}">
+                  <div class="class-name">${cls.name}</div>
+                  <div class="class-subject">${cls.subject}</div>
+                </div>
+                <div class="class-body">
+                  <div class="class-detail">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>${cls.teacher}</span>
+                  </div>
+                  <div class="class-detail">
+                    <i class="fas fa-users"></i>
+                    <span>${cls.students} Students</span>
+                  </div>
+                  <div class="class-detail">
+                    <i class="fas fa-door-open"></i>
+                    <span>${cls.room}</span>
+                  </div>
+                  <div class="class-detail">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Grade ${cls.grade}, Section ${cls.section}</span>
+                  </div>
+                  <div class="class-actions">
+                    <button class="class-btn class-btn-view view-class" data-id="${cls.id
+              }">
+                      <i class="fas fa-eye"></i> View
+                    </button>
+                    <button class="class-btn class-btn-edit edit-class" data-id="${cls.id
+              }">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="class-btn class-btn-delete delete-class" data-id="${cls.id
+              }">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `
+          )
+          .join("");
+
+        // Add event listeners to buttons
+        document.querySelectorAll(".edit-class").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            editClass(e.target.closest("button").dataset.id)
+          );
+        });
+
+        document.querySelectorAll(".delete-class").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            deleteClass(e.target.closest("button").dataset.id)
+          );
+        });
+
+        document.querySelectorAll(".view-class").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            viewClass(e.target.closest("button").dataset.id)
+          );
+        });
+      }
+
+      function updateStats(classList) {
+        const total = classList.length;
+        const totalStudents = classList.reduce((sum, cls) => sum + cls.students, 0);
+        const teachers = [...new Set(classList.map((cls) => cls.teacher))].length;
+        const avgClassSize = total > 0 ? Math.round(totalStudents / total) : 0;
+
+        document.getElementById("total-classes").textContent = total;
+        document.getElementById("total-students").textContent = totalStudents;
+        document.getElementById("total-teachers").textContent = teachers;
+        document.getElementById("avg-class-size").textContent = avgClassSize;
+      }
+
+      // Add new class
+      addClassBtn.addEventListener("click", () => {
+        document.getElementById("modal-title").textContent = "Add Class";
+        classForm.reset();
+        editingClassId = null;
+        modal.classList.remove("hidden");
+      });
+
+      // Close modal
+      function closeModal() {
+        modal.classList.add("hidden");
+        editingClassId = null;
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+      cancelBtn.addEventListener("click", closeModal);
+
+      // Handle form submission
+      classForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(classForm);
+
+        if (editingClassId) {
+          // Update existing class
+          const classIndex = classes.findIndex((c) => c.id == editingClassId);
+          if (classIndex !== -1) {
+            classes[classIndex] = {
+              ...classes[classIndex],
+              name: `Grade ${formData.get("grade")} - ${formData.get("section")}`,
+              grade: formData.get("grade"),
+              section: formData.get("section"),
+              teacher: formData.get("teacher"),
+              subject: formData.get("subject"),
+            };
+          }
+        } else {
+          // Add new class
+          const newClass = {
+            id: classes.length > 0 ? Math.max(...classes.map((c) => c.id)) + 1 : 1,
+            name: `Grade ${formData.get("grade")} - ${formData.get("section")}`,
+            grade: formData.get("grade"),
+            section: formData.get("section"),
+            teacher: formData.get("teacher"),
+            students: Math.floor(Math.random() * 10) + 25,
+            subject: formData.get("subject"),
+            room: `Room ${Math.floor(Math.random() * 200) + 100}`,
+          };
+          classes.push(newClass);
+        }
+
+        renderClassCards();
+        closeModal();
+
+        // Show success message
+        alert(`Class ${editingClassId ? "updated" : "added"} successfully!`);
+      });
+
+      // Edit class
+      function editClass(id) {
+        const cls = classes.find((c) => c.id == id);
+        if (cls) {
+          document.getElementById("modal-title").textContent = "Edit Class";
+          classForm.querySelector('input[name="name"]').value = cls.name;
+          classForm.querySelector('select[name="grade"]').value = cls.grade;
+          classForm.querySelector('select[name="section"]').value = cls.section;
+          classForm.querySelector('select[name="teacher"]').value = cls.teacher;
+          classForm.querySelector('select[name="subject"]').value = cls.subject;
+          editingClassId = id;
+          modal.classList.remove("hidden");
+        }
+      }
+
+      // View class
+      function viewClass(id) {
+        const cls = classes.find((c) => c.id == id);
+        if (cls) {
+          alert(
+            `Class Details:\n\nName: ${cls.name}\nGrade: ${cls.grade}\nSection: ${cls.section}\nTeacher: ${cls.teacher}\nSubject: ${cls.subject}\nStudents: ${cls.students}\nRoom: ${cls.room}`
+          );
+        }
+      }
+
+      // Delete class
+      function deleteClass(id) {
+        if (
+          confirm(
+            "Are you sure you want to delete this class? This action cannot be undone."
+          )
+        ) {
+          classes = classes.filter((cls) => cls.id != id);
+          renderClassCards();
+          alert("Class deleted successfully!");
+        }
+      }
+
+      // Search functionality
+      function filterClasses() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const gradeValue = gradeFilter.value;
+        const teacherValue = teacherFilter.value;
+
+        const filteredClasses = classes.filter((cls) => {
+          const matchesSearch =
+            cls.name.toLowerCase().includes(searchTerm) ||
+            cls.subject.toLowerCase().includes(searchTerm) ||
+            cls.teacher.toLowerCase().includes(searchTerm);
+
+          const matchesGrade = !gradeValue || cls.grade === gradeValue;
+          const matchesTeacher = !teacherValue || cls.teacher === teacherValue;
+
+          return matchesSearch && matchesGrade && matchesTeacher;
+        });
+
+        renderClassCards(filteredClasses);
+      }
+
+      searchInput.addEventListener("input", filterClasses);
+      gradeFilter.addEventListener("change", filterClasses);
+      teacherFilter.addEventListener("change", filterClasses);
+
+      // Handle window resize for responsive layout
+      window.addEventListener("resize", () => {
+        renderClassCards();
+      });
+
+      // Initial render
+      renderClassCards();
+    });
+  </script>
+</body>
+
+</html>
