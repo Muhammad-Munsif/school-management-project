@@ -8,6 +8,476 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/students.css">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --sidebar-width: 260px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+      background-color: #f1f5f9;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background-color: #cbd5e1;
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .active-nav-item {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      color: #64748b;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-item:hover {
+      background-color: #f1f5f9;
+      color: var(--dark);
+    }
+
+    .nav-item i {
+      margin-right: 0.75rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      background: white;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .header {
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    .student-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .student-table th {
+      text-align: left;
+      padding: 1rem;
+      background-color: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .student-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .student-table tr:hover {
+      background-color: #f8fafc;
+    }
+
+    .student-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+
+    .student-card {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      transition: all 0.2s;
+    }
+
+    .student-card:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .student-info {
+      flex: 1;
+    }
+
+    .student-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .student-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+
+    .student-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .grade-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .badge-9 {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-10 {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+
+    .badge-11 {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-12 {
+      background-color: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    .stats-card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stats-total {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .stats-grade-10 {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .stats-grade-11 {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .stats-grade-12 {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #475569;
+    }
+
+    .empty-state-text {
+      color: #64748b;
+      max-width: 400px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .search-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+
+    .search-input {
+      padding-left: 2.5rem;
+    }
+
+    .filter-container {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      min-width: 150px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: fixed;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 100;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .main-content {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .header-title {
+        font-size: 1.25rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .student-table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      .filter-container {
+        flex-direction: column;
+      }
+
+      .filter-select {
+        width: 100%;
+      }
+
+      .student-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .student-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .student-actions {
+        margin-top: 1rem;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-profile .user-name {
+        display: none;
+      }
+
+      .student-details {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100">
@@ -185,7 +655,409 @@
     </div>
   </div>
 
-  <script src="../js/students.js"></script>
+  <script src="../js/students.js">
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample student data
+      let students = [
+        {
+          id: 1,
+          name: "John Doe",
+          email: "john@example.com",
+          phone: "+1 (555) 123-4567",
+          grade: "10",
+          section: "A",
+          parent: "Mr. Doe",
+          joinDate: "2022-08-15",
+        },
+        {
+          id: 2,
+          name: "Jane Smith",
+          email: "jane@example.com",
+          phone: "+1 (555) 234-5678",
+          grade: "11",
+          section: "B",
+          parent: "Mrs. Smith",
+          joinDate: "2021-09-10",
+        },
+        {
+          id: 3,
+          name: "Steve Smith",
+          email: "steve@example.com",
+          phone: "+1 (555) 345-6789",
+          grade: "11",
+          section: "B",
+          parent: "Mr. Smith",
+          joinDate: "2021-09-10",
+        },
+        {
+          id: 4,
+          name: "Derren Smith",
+          email: "derren@example.com",
+          phone: "+1 (555) 456-7890",
+          grade: "11",
+          section: "B",
+          parent: "Mrs. Smith",
+          joinDate: "2021-09-10",
+        },
+      ];
+
+      const container = document.getElementById("student-table-container");
+      const modal = document.getElementById("student-modal");
+      const addStudentBtn = document.getElementById("add-student-btn");
+      const closeModalBtn = document.getElementById("close-modal");
+      const cancelBtn = document.getElementById("cancel-btn");
+      const studentForm = document.getElementById("student-form");
+      const searchInput = document.getElementById("search-students");
+      const gradeFilter = document.getElementById("grade-filter");
+      const sectionFilter = document.getElementById("section-filter");
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const sidebar = document.querySelector(".sidebar");
+
+      let editingStudentId = null;
+
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("hidden");
+      });
+
+      // Get student avatar initials
+      function getInitials(name) {
+        return name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase();
+      }
+
+      // Render student table
+      function renderStudentTable(studentList = students) {
+        if (studentList.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <h3 class="empty-state-title">No Students Found</h3>
+              <p class="empty-state-text">
+                No student records match your search criteria. Try adjusting your filters or add a new student.
+              </p>
+            </div>
+          `;
+          return;
+        }
+
+        // Update stats
+        updateStats(studentList);
+
+        // Check if we're on mobile
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+          renderStudentCards(studentList);
+        } else {
+          renderStudentTableDesktop(studentList);
+        }
+      }
+
+      function renderStudentTableDesktop(studentList) {
+        container.innerHTML = `
+          <div class="overflow-x-auto">
+            <table class="student-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Grade</th>
+                  <th>Section</th>
+                  <th>Parent</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${studentList
+            .map(
+              (student) => `
+                  <tr>
+                    <td>${student.id}</td>
+                    <td>
+                      <div class="flex items-center">
+                        <div class="student-avatar">
+                          ${getInitials(student.name)}
+                        </div>
+                        ${student.name}
+                      </div>
+                    </td>
+                    <td>${student.email}</td>
+                    <td>${student.phone}</td>
+                    <td>
+                      <span class="grade-badge badge-${student.grade}">
+                        Grade ${student.grade}
+                      </span>
+                    </td>
+                    <td>Section ${student.section}</td>
+                    <td>${student.parent}</td>
+                    <td>
+                      <div class="flex space-x-2">
+                        <button class="btn btn-secondary edit-btn" data-id="${student.id
+                }">
+                          <i class="fas fa-edit mr-1"></i> Edit
+                        </button>
+                        <button class="btn btn-danger delete-btn" data-id="${student.id
+                }">
+                          <i class="fas fa-trash mr-1"></i> Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                `
+            )
+            .join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        // Add event listeners to buttons
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            editStudent(e.target.closest("button").dataset.id)
+          );
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            deleteStudent(e.target.closest("button").dataset.id)
+          );
+        });
+      }
+
+      function renderStudentCards(studentList) {
+        container.innerHTML = `
+          <div class="space-y-4">
+            ${studentList
+            .map(
+              (student) => `
+              <div class="student-card">
+                <div class="student-avatar">
+                  ${getInitials(student.name)}
+                </div>
+                <div class="student-info">
+                  <div class="student-name">${student.name}</div>
+                  <div class="student-details">
+                    <span><i class="fas fa-envelope mr-1"></i>${student.email
+                }</span>
+                    <span><i class="fas fa-phone mr-1"></i>${student.phone
+                }</span>
+                    <span class="grade-badge badge-${student.grade}">
+                      Grade ${student.grade}, Section ${student.section}
+                    </span>
+                  </div>
+                </div>
+                <div class="student-actions">
+                  <button class="btn btn-secondary edit-btn" data-id="${student.id
+                }">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-danger delete-btn" data-id="${student.id
+                }">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            `
+            )
+            .join("")}
+          </div>
+        `;
+
+        // Add event listeners to buttons
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            editStudent(e.target.closest("button").dataset.id)
+          );
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            deleteStudent(e.target.closest("button").dataset.id)
+          );
+        });
+      }
+
+      function updateStats(studentList) {
+        const total = studentList.length;
+        const grade10 = studentList.filter((s) => s.grade === "10").length;
+        const grade11 = studentList.filter((s) => s.grade === "11").length;
+        const other = total - grade10 - grade11;
+
+        document.getElementById("total-students").textContent = total;
+        document.getElementById("grade-10-students").textContent = grade10;
+        document.getElementById("grade-11-students").textContent = grade11;
+        document.getElementById("other-students").textContent = other;
+      }
+
+      // Add new student
+      addStudentBtn.addEventListener("click", () => {
+        document.getElementById("modal-title").textContent = "Add Student";
+        studentForm.reset();
+        editingStudentId = null;
+        modal.classList.remove("hidden");
+      });
+
+      // Close modal
+      function closeModal() {
+        modal.classList.add("hidden");
+        editingStudentId = null;
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+      cancelBtn.addEventListener("click", closeModal);
+
+      // Handle form submission
+      studentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(studentForm);
+
+        if (editingStudentId) {
+          // Update existing student
+          const studentIndex = students.findIndex((s) => s.id == editingStudentId);
+          if (studentIndex !== -1) {
+            students[studentIndex] = {
+              ...students[studentIndex],
+              name: formData.get("name"),
+              email: formData.get("email"),
+              phone: formData.get("phone"),
+              grade: formData.get("grade"),
+              section: formData.get("section"),
+              parent: formData.get("parent"),
+            };
+          }
+        } else {
+          // Add new student
+          const newStudent = {
+            id:
+              students.length > 0 ? Math.max(...students.map((s) => s.id)) + 1 : 1,
+            name: formData.get("name"),
+            email: formData.get("email"),
+            phone: formData.get("phone"),
+            grade: formData.get("grade"),
+            section: formData.get("section"),
+            parent: formData.get("parent"),
+            joinDate: new Date().toISOString().split("T")[0],
+          };
+          students.push(newStudent);
+        }
+
+        renderStudentTable();
+        closeModal();
+
+        // Show success message
+        alert(`Student ${editingStudentId ? "updated" : "added"} successfully!`);
+      });
+
+      // Edit student
+      function editStudent(id) {
+        const student = students.find((s) => s.id == id);
+        if (student) {
+          document.getElementById("modal-title").textContent = "Edit Student";
+          studentForm.querySelector('input[name="name"]').value = student.name;
+          studentForm.querySelector('input[name="email"]').value = student.email;
+          studentForm.querySelector('input[name="phone"]').value = student.phone;
+          studentForm.querySelector('select[name="grade"]').value = student.grade;
+          studentForm.querySelector('select[name="section"]').value =
+            student.section;
+          studentForm.querySelector('input[name="parent"]').value = student.parent;
+          editingStudentId = id;
+          modal.classList.remove("hidden");
+        }
+      }
+
+      // Delete student
+      function deleteStudent(id) {
+        if (
+          confirm(
+            "Are you sure you want to delete this student? This action cannot be undone."
+          )
+        ) {
+          students = students.filter((student) => student.id != id);
+          renderStudentTable();
+          alert("Student deleted successfully!");
+        }
+      }
+
+      // Search functionality
+      searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const gradeValue = gradeFilter.value;
+        const sectionValue = sectionFilter.value;
+
+        const filteredStudents = students.filter((student) => {
+          const matchesSearch =
+            student.name.toLowerCase().includes(searchTerm) ||
+            student.email.toLowerCase().includes(searchTerm) ||
+            student.parent.toLowerCase().includes(searchTerm);
+
+          const matchesGrade = !gradeValue || student.grade === gradeValue;
+          const matchesSection = !sectionValue || student.section === sectionValue;
+
+          return matchesSearch && matchesGrade && matchesSection;
+        });
+
+        renderStudentTable(filteredStudents);
+      });
+
+      gradeFilter.addEventListener("change", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const gradeValue = gradeFilter.value;
+        const sectionValue = sectionFilter.value;
+
+        const filteredStudents = students.filter((student) => {
+          const matchesSearch =
+            student.name.toLowerCase().includes(searchTerm) ||
+            student.email.toLowerCase().includes(searchTerm) ||
+            student.parent.toLowerCase().includes(searchTerm);
+
+          const matchesGrade = !gradeValue || student.grade === gradeValue;
+          const matchesSection = !sectionValue || student.section === sectionValue;
+
+          return matchesSearch && matchesGrade && matchesSection;
+        });
+
+        renderStudentTable(filteredStudents);
+      });
+
+      sectionFilter.addEventListener("change", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const gradeValue = gradeFilter.value;
+        const sectionValue = sectionFilter.value;
+
+        const filteredStudents = students.filter((student) => {
+          const matchesSearch =
+            student.name.toLowerCase().includes(searchTerm) ||
+            student.email.toLowerCase().includes(searchTerm) ||
+            student.parent.toLowerCase().includes(searchTerm);
+
+          const matchesGrade = !gradeValue || student.grade === gradeValue;
+          const matchesSection = !sectionValue || student.section === sectionValue;
+
+          return matchesSearch && matchesGrade && matchesSection;
+        });
+
+        renderStudentTable(filteredStudents);
+      });
+
+      // Handle window resize for responsive layout
+      window.addEventListener("resize", () => {
+        renderStudentTable();
+      });
+
+      // Initial render
+      renderStudentTable();
+    });
+
+  </script>
 </body>
 
 </html>
