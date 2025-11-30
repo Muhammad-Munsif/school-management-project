@@ -8,6 +8,488 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/subject.css">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --sidebar-width: 260px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+      background-color: #f1f5f9;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background-color: #cbd5e1;
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .active-nav-item {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      color: #64748b;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-item:hover {
+      background-color: #f1f5f9;
+      color: var(--dark);
+    }
+
+    .nav-item i {
+      margin-right: 0.75rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      background: white;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .header {
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    .subject-card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .subject-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(30px, -30px);
+    }
+
+    .subject-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(-20px, 20px);
+    }
+
+    .subject-math {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .subject-science {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .subject-english {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .subject-computer {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .subject-history {
+      background: linear-gradient(135deg, #ec4899, #db2777);
+    }
+
+    .subject-geography {
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+    }
+
+    .subject-art {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+    }
+
+    .subject-music {
+      background: linear-gradient(135deg, #84cc16, #65a30d);
+    }
+
+    .subject-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      z-index: 1;
+    }
+
+    .subject-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      z-index: 1;
+    }
+
+    .subject-details {
+      font-size: 0.875rem;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+      z-index: 1;
+    }
+
+    .subject-teacher {
+      font-size: 0.875rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+      z-index: 1;
+    }
+
+    .subject-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+      z-index: 1;
+    }
+
+    .subject-btn {
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .subject-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .stats-card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stats-total {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .stats-active {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .stats-students {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .stats-teachers {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #475569;
+    }
+
+    .empty-state-text {
+      color: #64748b;
+      max-width: 400px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .search-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+
+    .search-input {
+      padding-left: 2.5rem;
+    }
+
+    .filter-container {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      min-width: 150px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: fixed;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 100;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .main-content {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .header-title {
+        font-size: 1.25rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .subject-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .filter-container {
+        flex-direction: column;
+      }
+
+      .filter-select {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-profile .user-name {
+        display: none;
+      }
+
+      .subject-actions {
+        flex-direction: column;
+      }
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100">
@@ -181,7 +663,358 @@
     </div>
   </div>
 
-  <script src="../js/subjects.js"></script>
+  <script src="../js/subjects.js">
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample subject data
+      let subjects = [
+        {
+          id: 1,
+          name: "Mathematics",
+          code: "MATH101",
+          grade: "10",
+          teacher: "Mr. David Wilson",
+          students: 35,
+          status: "active",
+          description: "Algebra, Geometry, and Calculus fundamentals",
+        },
+        {
+          id: 2,
+          name: "Science",
+          code: "SCI201",
+          grade: "10",
+          teacher: "Dr. Sarah Johnson",
+          students: 32,
+          status: "active",
+          description: "Physics, Chemistry, and Biology basics",
+        },
+        {
+          id: 3,
+          name: "English",
+          code: "ENG101",
+          grade: "10",
+          teacher: "Ms. Emily Brown",
+          students: 30,
+          status: "active",
+          description: "Literature, Grammar, and Composition",
+        },
+        {
+          id: 4,
+          name: "Computer Science",
+          code: "CS301",
+          grade: "11",
+          teacher: "Ms. Ellin Brown",
+          students: 28,
+          status: "active",
+          description: "Programming fundamentals and algorithms",
+        },
+        {
+          id: 5,
+          name: "History",
+          code: "HIS201",
+          grade: "11",
+          teacher: "Mr. Robert Smith",
+          students: 25,
+          status: "active",
+          description: "World history and civilizations",
+        },
+        {
+          id: 6,
+          name: "Geography",
+          code: "GEO101",
+          grade: "9",
+          teacher: "Ms. Lisa Anderson",
+          students: 29,
+          status: "active",
+          description: "Physical and human geography",
+        },
+        {
+          id: 7,
+          name: "Art",
+          code: "ART101",
+          grade: "9",
+          teacher: "Mr. James Wilson",
+          students: 20,
+          status: "active",
+          description: "Drawing, painting, and art history",
+        },
+        {
+          id: 8,
+          name: "Music",
+          code: "MUS101",
+          grade: "9",
+          teacher: "Ms. Sophia Garcia",
+          students: 18,
+          status: "inactive",
+          description: "Music theory and performance",
+        },
+      ];
+
+      const container = document.getElementById("subject-container");
+      const modal = document.getElementById("subject-modal");
+      const addSubjectBtn = document.getElementById("add-subject-btn");
+      const closeModalBtn = document.getElementById("close-modal");
+      const cancelBtn = document.getElementById("cancel-btn");
+      const subjectForm = document.getElementById("subject-form");
+      const searchInput = document.getElementById("search-subjects");
+      const gradeFilter = document.getElementById("grade-filter");
+      const statusFilter = document.getElementById("status-filter");
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const sidebar = document.querySelector(".sidebar");
+
+      let editingSubjectId = null;
+
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener("click", function () {
+        sidebar.classList.toggle("hidden");
+      });
+
+      // Get subject icon
+      function getSubjectIcon(subjectName) {
+        const icons = {
+          Mathematics: "fa-calculator",
+          Science: "fa-flask",
+          English: "fa-book",
+          "Computer Science": "fa-laptop-code",
+          History: "fa-monument",
+          Geography: "fa-globe-americas",
+          Art: "fa-palette",
+          Music: "fa-music",
+        };
+        return icons[subjectName] || "fa-book";
+      }
+
+      // Get subject class
+      function getSubjectClass(subjectName) {
+        const classes = {
+          Mathematics: "subject-math",
+          Science: "subject-science",
+          English: "subject-english",
+          "Computer Science": "subject-computer",
+          History: "subject-history",
+          Geography: "subject-geography",
+          Art: "subject-art",
+          Music: "subject-music",
+        };
+        return classes[subjectName] || "subject-math";
+      }
+
+      // Render subject cards
+      function renderSubjectCards(subjectList = subjects) {
+        if (subjectList.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h3 class="empty-state-title">No Subjects Found</h3>
+              <p class="empty-state-text">
+                No subject records match your search criteria. Try adjusting your filters or add a new subject.
+              </p>
+            </div>
+          `;
+          return;
+        }
+
+        // Update stats
+        updateStats(subjectList);
+
+        container.innerHTML = subjectList
+          .map(
+            (subject) => `
+            <div class="subject-card ${getSubjectClass(subject.name)}">
+              <i class="fas ${getSubjectIcon(subject.name)} subject-icon"></i>
+              <div class="subject-name">${subject.name}</div>
+              <div class="subject-details">Code: ${subject.code} | Grade: ${subject.grade
+              }</div>
+              <div class="subject-teacher">Teacher: ${subject.teacher}</div>
+              <div class="subject-details">Students: ${subject.students}</div>
+              <div class="subject-actions">
+                <button class="subject-btn edit-btn" data-id="${subject.id}">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="subject-btn delete-btn" data-id="${subject.id}">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+                <button class="subject-btn view-btn" data-id="${subject.id}">
+                  <i class="fas fa-eye"></i> View
+                </button>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+
+        // Add event listeners to buttons
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            editSubject(e.target.closest("button").dataset.id)
+          );
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            deleteSubject(e.target.closest("button").dataset.id)
+          );
+        });
+
+        document.querySelectorAll(".view-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) =>
+            viewSubject(e.target.closest("button").dataset.id)
+          );
+        });
+      }
+
+      function updateStats(subjectList) {
+        const total = subjectList.length;
+        const active = subjectList.filter((s) => s.status === "active").length;
+        const avgStudents =
+          subjectList.length > 0
+            ? Math.round(
+              subjectList.reduce((sum, s) => sum + s.students, 0) /
+              subjectList.length
+            )
+            : 0;
+        const teachers = [...new Set(subjectList.map((s) => s.teacher))].length;
+
+        document.getElementById("total-subjects").textContent = total;
+        document.getElementById("active-subjects").textContent = active;
+        document.getElementById("avg-students").textContent = avgStudents;
+        document.getElementById("total-teachers").textContent = teachers;
+      }
+
+      // Add new subject
+      addSubjectBtn.addEventListener("click", () => {
+        document.getElementById("modal-title").textContent = "Add Subject";
+        subjectForm.reset();
+        editingSubjectId = null;
+        modal.classList.remove("hidden");
+      });
+
+      // Close modal
+      function closeModal() {
+        modal.classList.add("hidden");
+        editingSubjectId = null;
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+      cancelBtn.addEventListener("click", closeModal);
+
+      // Handle form submission
+      subjectForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(subjectForm);
+
+        if (editingSubjectId) {
+          // Update existing subject
+          const subjectIndex = subjects.findIndex((s) => s.id == editingSubjectId);
+          if (subjectIndex !== -1) {
+            subjects[subjectIndex] = {
+              ...subjects[subjectIndex],
+              name: formData.get("name"),
+              code: formData.get("code"),
+              grade: formData.get("grade"),
+              teacher: formData.get("teacher"),
+              description: formData.get("description"),
+            };
+          }
+        } else {
+          // Add new subject
+          const newSubject = {
+            id:
+              subjects.length > 0 ? Math.max(...subjects.map((s) => s.id)) + 1 : 1,
+            name: formData.get("name"),
+            code: formData.get("code"),
+            grade: formData.get("grade"),
+            teacher: formData.get("teacher"),
+            students: Math.floor(Math.random() * 20) + 20,
+            status: "active",
+            description: formData.get("description"),
+          };
+          subjects.push(newSubject);
+        }
+
+        renderSubjectCards();
+        closeModal();
+
+        // Show success message
+        alert(`Subject ${editingSubjectId ? "updated" : "added"} successfully!`);
+      });
+
+      // Edit subject
+      function editSubject(id) {
+        const subject = subjects.find((s) => s.id == id);
+        if (subject) {
+          document.getElementById("modal-title").textContent = "Edit Subject";
+          subjectForm.querySelector('input[name="name"]').value = subject.name;
+          subjectForm.querySelector('input[name="code"]').value = subject.code;
+          subjectForm.querySelector('select[name="grade"]').value = subject.grade;
+          subjectForm.querySelector('select[name="teacher"]').value =
+            subject.teacher;
+          subjectForm.querySelector('textarea[name="description"]').value =
+            subject.description;
+          editingSubjectId = id;
+          modal.classList.remove("hidden");
+        }
+      }
+
+      // View subject
+      function viewSubject(id) {
+        const subject = subjects.find((s) => s.id == id);
+        if (subject) {
+          alert(
+            `Subject Details:\n\nName: ${subject.name}\nCode: ${subject.code}\nGrade: ${subject.grade}\nTeacher: ${subject.teacher}\nStudents: ${subject.students}\nDescription: ${subject.description}`
+          );
+        }
+      }
+
+      // Delete subject
+      function deleteSubject(id) {
+        if (
+          confirm(
+            "Are you sure you want to delete this subject? This action cannot be undone."
+          )
+        ) {
+          subjects = subjects.filter((subject) => subject.id != id);
+          renderSubjectCards();
+          alert("Subject deleted successfully!");
+        }
+      }
+
+      // Search functionality
+      function filterSubjects() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const gradeValue = gradeFilter.value;
+        const statusValue = statusFilter.value;
+
+        const filteredSubjects = subjects.filter((subject) => {
+          const matchesSearch =
+            subject.name.toLowerCase().includes(searchTerm) ||
+            subject.code.toLowerCase().includes(searchTerm) ||
+            subject.teacher.toLowerCase().includes(searchTerm);
+
+          const matchesGrade = !gradeValue || subject.grade === gradeValue;
+          const matchesStatus = !statusValue || subject.status === statusValue;
+
+          return matchesSearch && matchesGrade && matchesStatus;
+        });
+
+        renderSubjectCards(filteredSubjects);
+      }
+
+      searchInput.addEventListener("input", filterSubjects);
+      gradeFilter.addEventListener("change", filterSubjects);
+      statusFilter.addEventListener("change", filterSubjects);
+
+      // Handle window resize for responsive layout
+      window.addEventListener("resize", () => {
+        renderSubjectCards();
+      });
+
+      // Initial render
+      renderSubjectCards();
+    });
+
+  </script>
 </body>
 
 </html>
