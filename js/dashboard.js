@@ -1,8 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const sidebar = document.getElementById("sidebar");
-  const sidebarClose = document.getElementById("sidebarClose");
-  const sidebarOverlay = document.getElementById("sidebarOverlay");
   const currentDateElement = document.getElementById("current-date");
   const quickActions = document.querySelectorAll(".quick-action");
 
@@ -14,49 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     month: "long",
     day: "numeric",
   };
-  currentDateElement.textContent = now.toLocaleDateString("en-US", options);
-
-  // Check if we're on mobile
-  function isMobile() {
-    return window.innerWidth <= 1024;
+  if (currentDateElement) {
+    currentDateElement.textContent = now.toLocaleDateString("en-US", options);
   }
-
-  // Mobile menu toggle functionality
-  function openSidebar() {
-    sidebar.classList.add("mobile-visible");
-    sidebar.classList.remove("mobile-hidden");
-    sidebarOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeSidebar() {
-    sidebar.classList.remove("mobile-visible");
-    sidebar.classList.add("mobile-hidden");
-    sidebarOverlay.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-
-  // Initialize sidebar state based on screen size
-  function initSidebar() {
-    if (isMobile()) {
-      sidebar.classList.add("mobile-hidden");
-    } else {
-      sidebar.classList.remove("mobile-hidden", "mobile-visible");
-    }
-  }
-
-  mobileMenuBtn.addEventListener("click", openSidebar);
-  sidebarClose.addEventListener("click", closeSidebar);
-  sidebarOverlay.addEventListener("click", closeSidebar);
-
-  // Close sidebar when clicking on nav items on mobile
-  document.querySelectorAll(".nav-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      if (isMobile()) {
-        closeSidebar();
-      }
-    });
-  });
 
   // Quick action buttons
   quickActions.forEach((action) => {
@@ -194,16 +150,5 @@ document.addEventListener("DOMContentLoaded", function () {
     card.addEventListener("mouseleave", function () {
       this.style.transform = "translateY(0)";
     });
-  });
-
-  // Initialize sidebar on load
-  initSidebar();
-
-  // Handle window resize
-  window.addEventListener("resize", function () {
-    initSidebar();
-    if (!isMobile()) {
-      closeSidebar();
-    }
   });
 });
