@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
             </thead>
             <tbody>
                 ${activities
-                  .map(
-                    (activity) => `
+      .map(
+        (activity) => `
                     <tr class="border-b hover:bg-gray-50">
                         <td class="py-3 px-4">${activity.date}</td>
                         <td class="py-3 px-4">${activity.activity}</td>
@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td class="py-3 px-4">${activity.details}</td>
                     </tr>
                 `
-                  )
-                  .join("")}
+      )
+      .join("")}
             </tbody>
         </table>
     `;
