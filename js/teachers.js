@@ -117,17 +117,17 @@ document.addEventListener("DOMContentLoaded", function () {
               </thead>
               <tbody>
                 ${teacherList
-                  .map(
-                    (teacher) => `
+        .map(
+          (teacher) => `
                   <tr>
                     <td>${teacher.id}</td>
                     <td>
                       <div class="flex items-center">
                         <div class="teacher-avatar mr-3">
                           ${teacher.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
                         </div>
                         ${teacher.name}
                       </div>
@@ -142,22 +142,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${teacher.joinDate}</td>
                     <td>
                       <div class="flex space-x-2">
-                        <button class="btn btn-secondary edit-btn" data-id="${
-                          teacher.id
-                        }">
+                        <button class="btn btn-secondary edit-btn" data-id="${teacher.id
+            }">
                           <i class="fas fa-edit mr-1"></i> Edit
                         </button>
-                        <button class="btn btn-danger delete-btn" data-id="${
-                          teacher.id
-                        }">
+                        <button class="btn btn-danger delete-btn" data-id="${teacher.id
+            }">
                           <i class="fas fa-trash mr-1"></i> Delete
                         </button>
                       </div>
                     </td>
                   </tr>
                 `
-                  )
-                  .join("")}
+        )
+        .join("")}
               </tbody>
             </table>
           </div>
@@ -181,45 +179,41 @@ document.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = `
           <div class="space-y-4">
             ${teacherList
-              .map(
-                (teacher) => `
+        .map(
+          (teacher) => `
               <div class="teacher-card">
                 <div class="teacher-avatar">
                   ${teacher.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
                 </div>
                 <div class="teacher-info">
                   <div class="teacher-name">${teacher.name}</div>
                   <div class="teacher-details">
-                    <span><i class="fas fa-envelope mr-1"></i>${
-                      teacher.email
-                    }</span>
-                    <span><i class="fas fa-phone mr-1"></i>${
-                      teacher.phone
-                    }</span>
+                    <span><i class="fas fa-envelope mr-1"></i>${teacher.email
+            }</span>
+                    <span><i class="fas fa-phone mr-1"></i>${teacher.phone
+            }</span>
                     <span class="subject-badge badge-${teacher.subject.toLowerCase()}">
                       ${teacher.subject}
                     </span>
                   </div>
                 </div>
                 <div class="flex space-x-2">
-                  <button class="btn btn-secondary edit-btn" data-id="${
-                    teacher.id
-                  }">
+                  <button class="btn btn-secondary edit-btn" data-id="${teacher.id
+            }">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-danger delete-btn" data-id="${
-                    teacher.id
-                  }">
+                  <button class="btn btn-danger delete-btn" data-id="${teacher.id
+            }">
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
               </div>
             `
-              )
-              .join("")}
+        )
+        .join("")}
           </div>
         `;
 
