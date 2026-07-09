@@ -157,19 +157,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     <span>Grade ${cls.grade}, Section ${cls.section}</span>
                   </div>
                   <div class="class-actions">
-                    <button class="class-btn class-btn-view view-class" data-id="${
-                      cls.id
-                    }">
+                    <button class="class-btn class-btn-view view-class" data-id="${cls.id
+          }">
                       <i class="fas fa-eye"></i> View
                     </button>
-                    <button class="class-btn class-btn-edit edit-class" data-id="${
-                      cls.id
-                    }">
+                    <button class="class-btn class-btn-edit edit-class" data-id="${cls.id
+          }">
                       <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button class="class-btn class-btn-delete delete-class" data-id="${
-                      cls.id
-                    }">
+                    <button class="class-btn class-btn-delete delete-class" data-id="${cls.id
+          }">
                       <i class="fas fa-trash"></i> Delete
                     </button>
                   </div>
