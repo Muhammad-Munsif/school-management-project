@@ -176,9 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="subject-card ${getSubjectClass(subject.name)}">
               <i class="fas ${getSubjectIcon(subject.name)} subject-icon"></i>
               <div class="subject-name">${subject.name}</div>
-              <div class="subject-details">Code: ${subject.code} | Grade: ${
-          subject.grade
-        }</div>
+              <div class="subject-details">Code: ${subject.code} | Grade: ${subject.grade
+          }</div>
               <div class="subject-teacher">Teacher: ${subject.teacher}</div>
               <div class="subject-details">Students: ${subject.students}</div>
               <div class="subject-actions">
@@ -223,9 +222,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const avgStudents =
       subjectList.length > 0
         ? Math.round(
-            subjectList.reduce((sum, s) => sum + s.students, 0) /
-              subjectList.length
-          )
+          subjectList.reduce((sum, s) => sum + s.students, 0) /
+          subjectList.length
+        )
         : 0;
     const teachers = [...new Set(subjectList.map((s) => s.teacher))].length;
 
