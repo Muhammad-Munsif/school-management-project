@@ -121,44 +121,37 @@ document.addEventListener("DOMContentLoaded", function () {
               </thead>
               <tbody>
                 ${students
-                  .map(
-                    (student) => `
+        .map(
+          (student) => `
                   <tr>
                     <td>${student.id}</td>
                     <td>${student.name}</td>
                     <td>
                       <span class="status-badge badge-${student.status}">
-                        <span class="attendance-status status-${
-                          student.status
-                        }"></span>
-                        ${
-                          student.status.charAt(0).toUpperCase() +
-                          student.status.slice(1)
-                        }
+                        <span class="attendance-status status-${student.status
+            }"></span>
+                        ${student.status.charAt(0).toUpperCase() +
+            student.status.slice(1)
+            }
                       </span>
                     </td>
                     <td>
-                      <select class="form-input py-1 px-2 status-select" data-id="${
-                        student.id
-                      }">
-                        <option value="present" ${
-                          student.status === "present" ? "selected" : ""
-                        }>Present</option>
-                        <option value="absent" ${
-                          student.status === "absent" ? "selected" : ""
-                        }>Absent</option>
-                        <option value="late" ${
-                          student.status === "late" ? "selected" : ""
-                        }>Late</option>
-                        <option value="excused" ${
-                          student.status === "excused" ? "selected" : ""
-                        }>Excused</option>
+                      <select class="form-input py-1 px-2 status-select" data-id="${student.id
+            }">
+                        <option value="present" ${student.status === "present" ? "selected" : ""
+            }>Present</option>
+                        <option value="absent" ${student.status === "absent" ? "selected" : ""
+            }>Absent</option>
+                        <option value="late" ${student.status === "late" ? "selected" : ""
+            }>Late</option>
+                        <option value="excused" ${student.status === "excused" ? "selected" : ""
+            }>Excused</option>
                       </select>
                     </td>
                   </tr>
                 `
-                  )
-                  .join("")}
+        )
+        .join("")}
               </tbody>
             </table>
             <div class="mt-6 flex justify-end">
