@@ -397,7 +397,7 @@ body {
     gap: 1rem;
   }
 
-  .filters > div {
+  .filters>div {
     width: 100%;
   }
 }
