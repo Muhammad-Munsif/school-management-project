@@ -207,14 +207,37 @@
   /* gradient cards stay colorful */
 }
 
-[data-theme="dark"] .bg-blue-100 { background-color: #1e3a5f !important; }
-[data-theme="dark"] .text-blue-800 { color: #93c5fd !important; }
-[data-theme="dark"] .bg-green-100 { background-color: #064e3b !important; }
-[data-theme="dark"] .text-green-800 { color: #6ee7b7 !important; }
-[data-theme="dark"] .bg-purple-100 { background-color: #4c1d95 !important; }
-[data-theme="dark"] .text-purple-800 { color: #c4b5fd !important; }
-[data-theme="dark"] .bg-yellow-100 { background-color: #78350f !important; }
-[data-theme="dark"] .text-yellow-800 { color: #fcd34d !important; }
+[data-theme="dark"] .bg-blue-100 {
+  background-color: #1e3a5f !important;
+}
+
+[data-theme="dark"] .text-blue-800 {
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bg-green-100 {
+  background-color: #064e3b !important;
+}
+
+[data-theme="dark"] .text-green-800 {
+  color: #6ee7b7 !important;
+}
+
+[data-theme="dark"] .bg-purple-100 {
+  background-color: #4c1d95 !important;
+}
+
+[data-theme="dark"] .text-purple-800 {
+  color: #c4b5fd !important;
+}
+
+[data-theme="dark"] .bg-yellow-100 {
+  background-color: #78350f !important;
+}
+
+[data-theme="dark"] .text-yellow-800 {
+  color: #fcd34d !important;
+}
 
 [data-theme="dark"] .btn-secondary {
   background-color: #334155;
@@ -236,9 +259,17 @@
   color: white;
 }
 
-[data-theme="dark"] .attendance-present { background-color: #064e3b; }
-[data-theme="dark"] .attendance-absent { background-color: #7f1d1d; }
-[data-theme="dark"] .attendance-late { background-color: #78350f; }
+[data-theme="dark"] .attendance-present {
+  background-color: #064e3b;
+}
+
+[data-theme="dark"] .attendance-absent {
+  background-color: #7f1d1d;
+}
+
+[data-theme="dark"] .attendance-late {
+  background-color: #78350f;
+}
 
 [data-theme="dark"] .settings-tab {
   color: #94a3b8;
