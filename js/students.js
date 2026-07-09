@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
               </thead>
               <tbody>
                 ${studentList
-                  .map(
-                    (student) => `
+        .map(
+          (student) => `
                   <tr>
                     <td>${student.id}</td>
                     <td>
@@ -160,22 +160,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${student.parent}</td>
                     <td>
                       <div class="flex space-x-2">
-                        <button class="btn btn-secondary edit-btn" data-id="${
-                          student.id
-                        }">
+                        <button class="btn btn-secondary edit-btn" data-id="${student.id
+            }">
                           <i class="fas fa-edit mr-1"></i> Edit
                         </button>
-                        <button class="btn btn-danger delete-btn" data-id="${
-                          student.id
-                        }">
+                        <button class="btn btn-danger delete-btn" data-id="${student.id
+            }">
                           <i class="fas fa-trash mr-1"></i> Delete
                         </button>
                       </div>
                     </td>
                   </tr>
                 `
-                  )
-                  .join("")}
+        )
+        .join("")}
               </tbody>
             </table>
           </div>
@@ -199,8 +197,8 @@ document.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = `
           <div class="space-y-4">
             ${studentList
-              .map(
-                (student) => `
+        .map(
+          (student) => `
               <div class="student-card">
                 <div class="student-avatar">
                   ${getInitials(student.name)}
@@ -208,33 +206,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="student-info">
                   <div class="student-name">${student.name}</div>
                   <div class="student-details">
-                    <span><i class="fas fa-envelope mr-1"></i>${
-                      student.email
-                    }</span>
-                    <span><i class="fas fa-phone mr-1"></i>${
-                      student.phone
-                    }</span>
+                    <span><i class="fas fa-envelope mr-1"></i>${student.email
+            }</span>
+                    <span><i class="fas fa-phone mr-1"></i>${student.phone
+            }</span>
                     <span class="grade-badge badge-${student.grade}">
                       Grade ${student.grade}, Section ${student.section}
                     </span>
                   </div>
                 </div>
                 <div class="student-actions">
-                  <button class="btn btn-secondary edit-btn" data-id="${
-                    student.id
-                  }">
+                  <button class="btn btn-secondary edit-btn" data-id="${student.id
+            }">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-danger delete-btn" data-id="${
-                    student.id
-                  }">
+                  <button class="btn btn-danger delete-btn" data-id="${student.id
+            }">
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
               </div>
             `
-              )
-              .join("")}
+        )
+        .join("")}
           </div>
         `;
 
